@@ -21,14 +21,14 @@ namespace budget.Models
 
         public static Budget Get(String id, String connectionString)
         {
-            var manager = new DBManager<Budget>(connectionString, "StockMarket", "Budgets");
+            var manager = new DBManager<Budget>(connectionString, "Budget", "Budgets");
 
-            return manager.RetrieveOne(x => x.Estimated.Exists(y => y.Description == "Luz"));
+            return manager.RetrieveOne(x => x.Id == ObjectId.Parse(id));
         }
 
         public static IEnumerable<Budget> Get(DateTime start, DateTime end, String connectionString)
         {
-            var manager = new DBManager<Budget>(connectionString, "StockMarket", "Budgets");
+            var manager = new DBManager<Budget>(connectionString, "Budget", "Budgets");
 
             return manager.RetrieveAll(x => x.Start >= start && x.End <= end);
         }
