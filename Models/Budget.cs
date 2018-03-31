@@ -10,13 +10,13 @@ namespace budget.Models
         public ObjectId Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public List<Item> Estimated { get; set; }
-        public List<Item> Performed { get; set; }
+        public List<Item> Estimateds { get; set; }
+        public List<Item> Performeds { get; set; }
 
         public Budget()
         {
-            Estimated = new List<Item>();
-            Performed = new List<Item>();
+            Estimateds = new List<Item>();
+            Performeds = new List<Item>();
         }
 
         public static Budget Get(String id, String connectionString)
