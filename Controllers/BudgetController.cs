@@ -16,34 +16,29 @@ namespace budget.Controllers
             _config = config;
         }
 
-        // GET api/values
         [HttpGet]
         public IEnumerable<Budget> Get([FromQuery] DateTime start, [FromQuery] DateTime end)
         {
-            return Budget.Get(start, end, _config.GetSection("ConnectionStrings")["Mongo"]);
+            return Budget.Get(start, end, _config.GetSection("ConnectionStrings")["Budget"]);
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public Budget Get(string id)
         {
-            return Budget.Get(id, _config.GetSection("ConnectionStrings")["Mongo"]);
+            return Budget.Get(id, _config.GetSection("ConnectionStrings")["Budget"]);
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody] Budget budget)
         {
-            Budget.Save(budget, _config.GetSection("ConnectionStrings")["Mongo"]);
+            Budget.Save(budget, _config.GetSection("ConnectionStrings")["Budget"]);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using budget.DB;
 using MongoDB.Bson;
 
@@ -49,7 +50,12 @@ namespace budget.Models
             {
                 var manager = new DBManager<Budget>(connectionString, "Budget", "Budgets");
 
-                manager.Create(entitity);
+                entitity.Estimateds = entitity.Estimateds.OrderBy(x => x.Date).ToList();
+
+                if (entitity.Id.ToString() == "000000000000000000000000")
+                    manager.Create(entitity);
+                else
+                    manager.Update(x => x.Id == entitity.Id, entitity);
             }
         }
     }
